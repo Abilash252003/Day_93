@@ -1,0 +1,70 @@
+////100 Days of RTL/////
+
+////Abilash P/////
+
+////Moore circuit-overlapping/////
+
+module sequence_detector_1001_tb();
+  reg clk, rst, x;
+  wire z;
+  
+  sequence_detector_1001 DUT(.clk(clk), .rst(rst), .x(x), .z(z));
+  
+  initial 
+    begin
+      clk=0;
+      forever #10 clk = ~clk;  
+    end
+  
+  initial
+    begin
+      x=0;
+      rst = 1'b1;
+      #10;
+      rst = 1'b0;
+      #20 x=1;
+      #20 x=0;
+      #20 x=0;
+      #20 x=1;
+      
+      #20 x=1;
+      #20 x=1;
+      #20 x=0;
+      
+      #20 x=0;
+      
+      #20 x=1;
+      #20 x=1;
+      #20 x=0;
+      #20 x=0;
+      
+      #20 x=1;
+      #20 x=0;
+      #20 x=0;
+      #20 x=1;
+      
+      #20 x=1;
+      #20 x=0;
+      #20 x=1;
+      #20 x=0;
+   
+      #20 x=0;
+      #20 x=1;
+      #20 x=0;
+      #20 x=0;
+      
+      #20 x=1;
+      #20 x=0;
+      #20 x=0;
+      #20 x=1;
+      #20;
+      $finish;
+    end
+      
+  initial
+    begin
+       $dumpfile("dump.vcd");
+       $dumpvars(1);
+     end
+  
+endmodule
